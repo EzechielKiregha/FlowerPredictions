@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower - Predict</title>
+    <style media="screen">
+        *,
+        *:before,
+        *:after{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            background-color: #080710;
+        }
+        
+        .info {
+            display: inline-block;
+        }
+        form{
+            height: 650px;
+            width: 850px;
+            background-color: rgba(255,255,255,0.13);
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 40px rgba(8,7,16,0.6);
+            padding: 50px 35px;
+        }
+        
+        form *{
+            font-family: 'Poppins',sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+        }
+        h1{
+            font-size: 45px;
+            color: orangered;
+            text-align: center;
+        }
+        
+        form h2{
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+        }
+        label{
+            display: block;
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: 500;
+            margin-left: 12%;
+
+        }
+        input{
+            height: 40px;
+            width: 75%;
+            margin-left: 12%;
+            background-color: rgba(255,255,255,0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 2px;
+            font-size: 24px;
+            font-weight: 300;
+        }
+        
+        ::placeholder{
+            color: #e5e5e5;
+        }
+        span{
+            display: flex;
+            color: orangered;
+            font-size: 70px;
+            margin-top: 15%;
+            margin-left:33%;
+            margin-bottom: 70px;
+        }
+        .reset{
+            display: flex;
+            font-size: 25px;
+            font-weight: bold;
+            border-radius: 4px;
+            text-decoration: none;
+            padding: 10px 40% 10px 40%;
+            margin-top: 25%;
+            background-color: #ffffff;
+            color: #080710;
+        }
+        button{
+            margin-top: 10%;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="info">
+    <form action="" method="POST">
+        <h1>
+            IRIS Flower predictions
+        </h1>
+        {% csrf_token %}
+        {% if not result %}
+            <label for="sepal length">sepal length: </label>
+            <input type="number" placeholder="....." step="0.1" name="sepal length" required>
+
+            <label for="sepal width">sepal width: </label>
+            <input type="number" placeholder="....." step="0.1" name="sepal width" required>
+
+            <label for="petal length">petal length: </label>
+            <input type="number" placeholder="....." step="0.1" name="petal length" required>
+
+            <label for="petal width">petal width: </label>
+            <input type="number" placeholder="....." step="0.1" name="petal width" required>
+        
+            <button type="submit">Submit</button>
+            {% else %}
+            <h2>From Your Inputs, The Flower Predicted is</h2>
+            <h1><span>{{ result }}</span></h1>
+            <a href="/" class="reset">Predict Now</a>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
